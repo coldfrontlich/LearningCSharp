@@ -19,11 +19,11 @@ namespace ToDoList
     + Выполненая
     */
 
-    class Program
+    internal class Program
     {
         private static IssueList _issueList;
 
-        public static void Main()
+        private static void Main()
         {
             Console.OutputEncoding = Encoding.UTF8;
 
@@ -58,6 +58,7 @@ namespace ToDoList
                         break;
 
                     case Operations.EDIT_ISSUE:
+                        EditIssue();
                         Console.WriteLine("Отредактировали задачу");
                         break;
 
@@ -76,6 +77,36 @@ namespace ToDoList
             }
         }
 
+        private static void EditIssue()
+        {
+            Issue[] issues = _issueList.GetIssues();
+
+            for (int i = 0; i < issues.Length; i++)
+            {
+                Issue issue = issues[i];
+                int issueNumber = (i + 1);
+
+                Console.WriteLine(issueNumber + ") Название: " + issue.Title + ", Cтатус: " + issue.Status);
+            }
+
+            bool isSuccess = false;
+            int selectedIssueNumber = 0;
+            do
+            {
+                Console.Write("Введите номер задачи: ");
+                string userInput = Console.ReadLine();
+                isSuccess = int.TryParse(userInput, out int selectedIssueNumber);
+
+                if (selectedIssueNumber < 1 || selectedIssueNumber > issues.Length)
+                {
+                    isSuccess = false;
+                }
+
+            } while (!isSuccess);
+
+            string newTitle = Console.ReadLine();
+        }
+
         private static void PrintIssues()
         {
             Issue[] issues = _issueList.GetIssues();
@@ -83,8 +114,9 @@ namespace ToDoList
             for (int i = 0; i < issues.Length; i++)
             {
                 Issue issue = issues[i];
+                int issueNumber = (i + 1);
 
-                Console.WriteLine("Название: " + issue.Title + ", Cтатус: " + issue.Status);
+                Console.WriteLine(issueNumber + ") Название: " + issue.Title + ", Cтатус: " + issue.Status);
             }
         }
 
