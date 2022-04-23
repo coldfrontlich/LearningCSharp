@@ -1,2 +1,24 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿namespace ToDoList
+{
+    /*
+    Список задач
+    + Добавить задачу
+    + Удалить задачу
+    + Пометить задачу как выполненая
+    + Редактировать задачу
+
+    Задача
+    + Название
+    + Дата
+    + Статус
+
+    Статусы
+    + Новая
+    + Выполненая
+    */
+
+    class Program
+    {
+
+    }
+}
