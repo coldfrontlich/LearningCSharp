@@ -8,6 +8,7 @@
             CreationDate = DateTime.Now;
             Status = Status.New;
         }
+
         public string Title { get; set; }
 
         public DateTime CreationDate { get; set; }

@@ -44,10 +44,21 @@ namespace ToDoList
                 switch (operation.ToLower())
                 {
                     case Operations.SHOW_ISSUES_LIST:
-                        Console.WriteLine("Список задач");
+                        Issue[] issues = issueList.GetIssues();
+
+                        for (int i = 0; i < issues.Length; i++)
+                        {
+                            Issue issue = issues[i];
+
+                            Console.WriteLine("Название: " + issue.Title + ", Cтатус: " + issue.Status);
+                        }
+
                         break;
 
                     case Operations.ADD_NEW_ISSUE:
+                        Issue newIssue = new Issue();
+
+                        issueList.Add(newIssue);
                         Console.WriteLine("Добавили задачу");
                         break;
 

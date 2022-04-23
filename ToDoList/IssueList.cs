@@ -29,5 +29,36 @@ namespace ToDoList
                 Title = "Test3"
             };
         }
+
+        public Issue[] GetIssues()
+        {
+            int issuesCount = Count();
+            Issue[] result = new Issue[issuesCount];
+
+            for (int i = 0; i < issuesCount; i++)
+            {
+                result[i] = _issues[i];
+            }
+
+            return result;
+        }
+
+        public void Add(Issue newIssue)
+        {
+
+        }
+
+        private int Count()
+        {
+            int counter = 0;
+            for (int i = 0; i < _issues.Length; i++)
+            {
+                if (_issues[i] != null)
+                {
+                    counter++;
+                }
+            }
+            return counter;
+        }
     }
 }
