@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ToDoList
 {
-    public enum Status
+    public enum Status 
     {
         New,
         Done
