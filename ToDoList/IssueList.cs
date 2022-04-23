@@ -61,5 +61,19 @@ namespace ToDoList
             }
             return counter;
         }
+
+        public void EditTitle(int selectedIssueNumber, string newTitle)
+        {
+            if (selectedIssueNumber > 0 && !string.IsNullOrWhiteSpace(newTitle))
+            {
+
+                _issues[selectedIssueNumber - 1].Title = newTitle;
+            }
+        }
+
+        internal void Delete(int selectedIssueNumber)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

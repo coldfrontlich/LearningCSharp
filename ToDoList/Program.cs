@@ -54,7 +54,7 @@ namespace ToDoList
                         break;
 
                     case Operations.REMOVE_ISSUE:
-                        Console.WriteLine("Удалили задачу");
+                        DeleteIssue();
                         break;
 
                     case Operations.EDIT_ISSUE:
@@ -74,37 +74,31 @@ namespace ToDoList
                         Console.WriteLine("Такой команды нет!");
                         break;
                 }
+
+                if (IsContinue)
+                {
+                    Console.WriteLine("Нажмите любую клавишу для продолжения");
+                    Console.ReadKey();
+                    Console.Clear();
+                }
             }
+        }
+
+        private static void DeleteIssue()
+        {
+            int selectedIssueNumber = GetIssueNumber();
+            _issueList.Delete(selectedIssueNumber);
+
         }
 
         private static void EditIssue()
         {
-            Issue[] issues = _issueList.GetIssues();
+            int selectedIssueNumber = GetIssueNumber();
 
-            for (int i = 0; i < issues.Length; i++)
-            {
-                Issue issue = issues[i];
-                int issueNumber = (i + 1);
-
-                Console.WriteLine(issueNumber + ") Название: " + issue.Title + ", Cтатус: " + issue.Status);
-            }
-
-            bool isSuccess = false;
-            int selectedIssueNumber = 0;
-            do
-            {
-                Console.Write("Введите номер задачи: ");
-                string userInput = Console.ReadLine();
-                isSuccess = int.TryParse(userInput, out int selectedIssueNumber);
-
-                if (selectedIssueNumber < 1 || selectedIssueNumber > issues.Length)
-                {
-                    isSuccess = false;
-                }
-
-            } while (!isSuccess);
-
+            Console.Write("Введите новое название задачи: ");
             string newTitle = Console.ReadLine();
+
+            _issueList.EditTitle(selectedIssueNumber, newTitle);
         }
 
         private static void PrintIssues()
@@ -129,6 +123,36 @@ namespace ToDoList
 
             _issueList.Add(newIssue);
             Console.WriteLine("Добавили новую задачу");
+        }
+
+        private static int GetIssueNumber()
+        {
+            Issue[] issues = _issueList.GetIssues();
+
+            for (int i = 0; i < issues.Length; i++)
+            {
+                Issue issue = issues[i];
+                int issueNumber = (i + 1);
+
+                Console.WriteLine(issueNumber + ") Название: " + issue.Title + ", Cтатус: " + issue.Status);
+            }
+
+            bool isSuccess = false;
+            int selectedIssueNumber = 0;
+            do
+            {
+                Console.Write("Введите номер задачи: ");
+                string userInput = Console.ReadLine();
+                isSuccess = int.TryParse(userInput, out selectedIssueNumber);
+
+                if (selectedIssueNumber < 1 || selectedIssueNumber > issues.Length)
+                {
+                    isSuccess = false;
+                }
+
+            } while (!isSuccess);
+
+            return selectedIssueNumber;
         }
     }
 }
