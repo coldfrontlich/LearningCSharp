@@ -21,11 +21,13 @@ namespace ToDoList
 
     class Program
     {
+        private static IssueList _issueList;
+
         public static void Main()
         {
             Console.OutputEncoding = Encoding.UTF8;
 
-            IssueList issueList = new IssueList(100);
+            _issueList = new IssueList(100);
 
             bool IsContinue = true;
 
@@ -44,22 +46,11 @@ namespace ToDoList
                 switch (operation.ToLower())
                 {
                     case Operations.SHOW_ISSUES_LIST:
-                        Issue[] issues = issueList.GetIssues();
-
-                        for (int i = 0; i < issues.Length; i++)
-                        {
-                            Issue issue = issues[i];
-
-                            Console.WriteLine("Название: " + issue.Title + ", Cтатус: " + issue.Status);
-                        }
-
+                        PrintIssues();
                         break;
 
                     case Operations.ADD_NEW_ISSUE:
-                        Issue newIssue = new Issue();
-
-                        issueList.Add(newIssue);
-                        Console.WriteLine("Добавили задачу");
+                        CreateNewIssue();
                         break;
 
                     case Operations.REMOVE_ISSUE:
@@ -83,6 +74,29 @@ namespace ToDoList
                         break;
                 }
             }
+        }
+
+        private static void PrintIssues()
+        {
+            Issue[] issues = _issueList.GetIssues();
+
+            for (int i = 0; i < issues.Length; i++)
+            {
+                Issue issue = issues[i];
+
+                Console.WriteLine("Название: " + issue.Title + ", Cтатус: " + issue.Status);
+            }
+        }
+
+        private static void CreateNewIssue()
+        {
+            Console.Write("Наберите название задачи: ");
+            string title = Console.ReadLine();
+
+            Issue newIssue = new Issue { Title = title };
+
+            _issueList.Add(newIssue);
+            Console.WriteLine("Добавили новую задачу");
         }
     }
 }

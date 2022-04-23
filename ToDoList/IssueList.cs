@@ -45,7 +45,8 @@ namespace ToDoList
 
         public void Add(Issue newIssue)
         {
-
+            int nextIssueIndex = Count();
+            _issues[nextIssueIndex] = newIssue;
         }
 
         private int Count()
