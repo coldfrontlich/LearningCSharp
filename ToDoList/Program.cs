@@ -63,7 +63,7 @@ namespace ToDoList
                         break;
 
                     case Operations.SET_ISSUE_AS_DONE:
-                        Console.WriteLine("Выполнение задачи");
+                        SetDoneIssue();
                         break;
 
                     case Operations.EXIT:
@@ -82,6 +82,13 @@ namespace ToDoList
                     Console.Clear();
                 }
             }
+        }
+
+        private static void SetDoneIssue()
+        {
+            int selectedIssueNumber = GetIssueNumber();
+            int selectedIssueNumberDone = selectedIssueNumber - 1;
+            _issueList.SetDoneIssue(selectedIssueNumberDone);
         }
 
         private static void DeleteIssue()

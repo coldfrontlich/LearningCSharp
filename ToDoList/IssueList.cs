@@ -71,9 +71,31 @@ namespace ToDoList
             }
         }
 
-        internal void Delete(int selectedIssueNumber)
+        public void Delete(int selectedIssueNumber)
         {
-            throw new NotImplementedException();
+            int issueIndexToRemove = selectedIssueNumber - 1;
+
+            _issues[issueIndexToRemove] = null;
+            int issuesCount = Count();
+
+            for (int i = issueIndexToRemove; i <= issuesCount - issueIndexToRemove; i++)
+            {
+                var temp = _issues[i];
+                _issues[i] = _issues[i+1];
+                _issues[i+1] = temp;
+            }
+        }
+
+        public void SetDoneIssue(int selectedIssueNumberDone)
+        {
+            if (_issues[selectedIssueNumberDone].Status == Status.New)
+            {
+                _issues[selectedIssueNumberDone].Status = Status.Done;
+            }
+            else
+            {
+                Console.WriteLine("Эта задача уже выполнена!");
+            }
         }
     }
 }
