@@ -6,23 +6,13 @@ using System.Threading.Tasks;
 
 namespace HuntTheWumpus.GameObjects
 {
-    public class Player
+
+    public class Player : GameObject
     {
-
-    }
-
-    public class Wumpus
-    {
-
-    }
-
-    public class Bat
-    {
-
-    }
-
-    public class Pit
-    {
-
+        public Player()
+        {
+            IsAlive = true;
+        }
+        public bool IsAlive { get; set; }
     }
 }
