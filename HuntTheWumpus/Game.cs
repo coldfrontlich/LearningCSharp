@@ -9,16 +9,20 @@ namespace HuntTheWumpus
 {
     public class Game
     {
-        private const byte MAX_MAP_SIZE = 6;
         public void Start()
         {
+            Map map = new Map(6);
+
             Player player = new Player();
             Wumpus wumpus = new Wumpus();
+
+            //map.AddObject(player);
+            //map.AddObject(wumpus);
 
             while (player.IsAlive && wumpus.IsAlive)
             {
                 Console.Clear();
-                PrintMap();
+                PrintMap(map.GetMap());
                 ConsoleKeyInfo userInput = Console.ReadKey(true);
 
                 if (userInput.Key == ConsoleKey.Escape)
@@ -34,13 +38,13 @@ namespace HuntTheWumpus
                 Console.WriteLine("Вас съел Вумпус");
         }
 
-        public void PrintMap()
+        public void PrintMap(string[,] map)
         {
-            for (int y = 0; y < MAX_MAP_SIZE; y++)
+            for (int y = 0; y < map.GetLength(0); y++)
             {
-                for (int x = 0; x < MAX_MAP_SIZE; x++)
+                for (int x = 0; x < map.GetLength(1); x++)
                 {
-                    Console.Write("[ ]");
+                    Console.Write(map[x, y]);
                 }
 
                 Console.WriteLine();
