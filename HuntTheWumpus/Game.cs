@@ -13,11 +13,16 @@ namespace HuntTheWumpus
         {
             Map map = new Map(6);
 
-            Player player = new Player();
-            Wumpus wumpus = new Wumpus();
+            Player player = new Player(new Coordinates(2, 4));
+            Wumpus wumpus = new Wumpus(new Coordinates(5, 2));
 
-            //map.AddObject(player);
-            //map.AddObject(wumpus);
+            map.AddObject(new Bat(new Coordinates(4, 3)));
+            map.AddObject(new Bat(new Coordinates(2, 2)));
+            map.AddObject(new Pit(new Coordinates(1, 4)));
+            map.AddObject(new Pit(new Coordinates(3, 5)));
+
+            map.AddObject(player);
+            map.AddObject(wumpus);
 
             while (player.IsAlive && wumpus.IsAlive)
             {

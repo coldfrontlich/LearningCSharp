@@ -27,7 +27,8 @@ namespace HuntTheWumpus
 
         public void AddObject(GameObject gameObject)
         {
-            throw new NotImplementedException();
+            Coordinates objectCoordinates = gameObject.Coordinates;
+            _map[objectCoordinates.X, objectCoordinates.Y] = gameObject.Model;
         }
 
         public string[,] GetMap()

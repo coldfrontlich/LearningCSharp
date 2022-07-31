@@ -2,7 +2,8 @@
 {
     public class Wumpus : GameObject
     {
-        public Wumpus()
+
+        public Wumpus(Coordinates coordinates) : base(coordinates, "[W]")
         {
             IsAlive = true;
         }

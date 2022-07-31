@@ -9,7 +9,7 @@ namespace HuntTheWumpus.GameObjects
 
     public class Player : GameObject
     {
-        public Player()
+        public Player(Coordinates coordinates) : base(coordinates, "[@]")
         {
             IsAlive = true;
         }
